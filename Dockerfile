@@ -3,9 +3,9 @@ FROM node:17 AS builder
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-COPY tsconfig*.json ./
-COPY ./src ./src
+COPY app/package*.json ./
+COPY app/tsconfig*.json ./
+COPY app/src ./src
 RUN npm ci --quiet && npm run build
 
 
@@ -20,7 +20,7 @@ ENV SENTRY_RELEASE=${RELEASE:-dev}
 ENV NODE_ENV=production
 ENV DEBUG=false
 
-COPY package*.json ./
+COPY app/package*.json ./
 RUN npm ci --quiet --only=production
 
 COPY --from=builder /usr/src/app/dist ./dist

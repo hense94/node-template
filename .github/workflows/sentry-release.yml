@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: node-template
-
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,6 +28,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Print
+        run: ls -al
+
+      - name: pwd
+        run: pwd
+
       - name: Sentry release
         uses: getsentry/action-release@v1.1.6
         env:
@@ -34,6 +42,6 @@ jobs:
           SENTRY_PROJECT: ${{ env.IMAGE_NAME }}
         with:
           environment: 'production'
-          sourcemaps: './dist'
+          sourcemaps: 'app/dist'
           url_prefix: '/app/dist'
           version: ${{ github.sha }}
