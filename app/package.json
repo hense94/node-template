@@ -19,7 +19,7 @@
   "homepage": "https://github.com/hense94/node-template#readme",
   "dependencies": {
     "@sentry/integrations": "^6.17.9",
-    "@sentry/node": "^6.17.9",
+    "@sentry/node": "^7.0.0",
     "dotenv": "^16.0.0",
     "tslib": "^2.3.1"
   },
